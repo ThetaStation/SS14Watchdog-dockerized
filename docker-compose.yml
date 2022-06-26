@@ -27,4 +27,4 @@ services:
       - "1212:1212/udp"
 
 volumes:
-  db_dbata:
+  db_data:
