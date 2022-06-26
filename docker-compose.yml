@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  ss14_db:
+    image: postgres:14.1-alpine
+    container_name: postgres_ss14-watchdog
+    volumes:
+      - db_dbata:/usr/src/postgresql/data
+    environment:
+      POSTGRES_DB: ss14
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: iu6Shoh6oogu
+      PGDATA: /usr/src/postgresql/data
+    # ports:
+    #   - "9999:5432"
+  ss14:
+    depends_on:
+      - ss14_db
+    build: .
+    container_name: ss14-watchdog
+    volumes:
+      - ./appsettings.yml:/app/appsettings.yml
+      - ./instances:/app/instances
+    ports:
+      - "5555:5000"
+      - "1212:1212"
+      - "1212:1212/udp"
+
+volumes:
+  db_dbata:

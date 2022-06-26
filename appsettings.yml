@@ -1,0 +1,39 @@
+Serilog:
+  Using: [ "Serilog.Sinks.Console", "Serilog.Sinks.Loki" ]
+  MinimumLevel:
+    Default: Information
+    Override:
+      SS14: Debug
+      Microsoft: "Warning"
+      Microsoft.Hosting.Lifetime: "Information"
+      Microsoft.AspNetCore: Warning
+
+  WriteTo:
+    - Name: Console
+      Args:
+        OutputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {SourceContext}] {Message:lj}{NewLine}{Exception}"
+
+
+BaseUrl: "http://localhost:5000/"
+
+AllowedHosts: "*"
+Servers:
+  Instances:
+    # ID of your server.
+    example:
+      # Name of the server
+      Name: "Change me"
+      ApiToken: "asdasd" # API token to control this instance remotely like run updates, restart server.
+      ApiPort: 1212 # API port OF THE GAME SERVER. This has to match the 1212 HTTP status API (described below). Otherwise the watchdog can't contact the game server for stuff.
+
+      # Auto update configuration. This can be left out if you do not need auto updates. Example is for our officially hosted builds.
+      # See below for alternatives.
+      UpdateType: "Manifest"
+      Updates:
+        ManifestUrl: "https://central.spacestation14.io/builds/wizards/manifest.json"
+
+      # Any environment variables you may want to specify.
+      EnvironmentVariables:
+        DOTNET_TC_QuickJitForLoops: 1
+        DOTNET_ReadyToRun: 0
+        DOTNET_gcServer: 1

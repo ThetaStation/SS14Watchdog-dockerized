@@ -1,0 +1,53 @@
+Serilog:
+  Using: [ "Serilog.Sinks.Console", "Serilog.Sinks.Loki" ]
+  MinimumLevel: 
+    Default: Information
+    Override:
+      SS14: Verbose
+      Microsoft: Warning
+      Microsoft.Hosting.Lifetime: "Information"
+      
+  WriteTo:
+    - Name: Console
+      Args:
+        OutputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {SourceContext}] {Message:lj}{NewLine}{Exception}"
+        
+  Enrich: [ "FromLogContext" ]
+
+  #Loki:
+  #  Address: "http://localhost:3100"
+  #  Name: "Test"
+
+BaseUrl: "http://localhost:5000/"
+
+Servers:
+  InstanceRoot: "bin/instances"
+  Instances:
+    syndicate_mothership:
+      Name: "Syndicate Mothership"
+      ApiToken: "Honk"
+      ApiPort: 1212
+      #RunCommand: "/ssdhome/pj/Projects/space-station-14-content/bin/Content.Server/Content.Server"
+      #UpdateType: "Local"
+      #Updates:
+      #  CurrentVersion: "honk2"
+
+      #UpdateType: "Git"
+      #Updates:
+      #  BaseUrl: "https://github.com/space-wizards/space-station-14.git"
+      #  Branch: "master"
+      #  HybridACZ: true
+
+      #UpdateType: "Git"
+      #Updates:
+      #  BaseUrl: "https://github.com/space-wizards/space-station-14.git"
+      #  Branch: "master"
+      #  HybridACZ: false
+
+      #UpdateType: "Jenkins"
+      #Updates:
+      #  BaseUrl: "https://builds.spacestation14.io/jenkins"
+      #  JobName: "SS14 Content"
+      UpdateType: "Manifest"
+      Updates:
+        ManifestUrl: "https://central.spacestation14.io/builds/wizards/manifest.json"
