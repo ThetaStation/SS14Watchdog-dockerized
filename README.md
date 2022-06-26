@@ -4,15 +4,11 @@ SS14.Watchdog (codename Ian) is SS14's server-hosting wrapper thing, similar to 
 
 Documentation on how setup and use for SS14.Watchdog is [here](https://docs.spacestation14.io/en/getting-started/hosting#ss14watchdog).
 
-## Docker
-For convenience, a docker image is provided, with an example use below:
-```sh
-docker run \
---name="ss14" \
--p 5000:5000 \
--p 1212:1212 \
--p 1212:1212/udp \
--v /path/to/appsettings.yml:/app/appsettings.yml \
--v /path/to/instances/folder:/app/instances \
-cadynz/ss14-watchdog
-```
+## Docker compose
+Getting it up and running is simple
+```docker-compose up --build```
+Запустить в background
+```docker-compose up --build -d```
+
+## Configs
+You probably want to change config.toml and appsettings.yml. Also remember to change the DATABASE PASSWORD
