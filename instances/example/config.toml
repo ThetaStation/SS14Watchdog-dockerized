@@ -1,0 +1,38 @@
+[log]
+path = "logs"
+format = "log_%(date)s-%(time)s.txt"
+level = 1
+enabled = false
+
+[net]
+tickrate = 60
+port = 1212
+bindto = "::,0.0.0.0"
+
+[status]
+enabled = true
+
+[game]
+hostname = "ABC config server"
+maxplayers = 64
+type = 1
+welcomemsg = "Welcome to the server!"
+
+[console]
+loginlocal = true
+
+
+[auth]
+mode = 0
+allowlocal = true
+
+[database]
+# Database type to use. Can be "sqlite" or "postgres" currently.
+engine = "postgres"
+
+# PostgreSQL database configuration, should be self explanatory.
+pg_host = "ss14_db"
+pg_port = 5432
+pg_database = "ss14"
+pg_username = "postgres"
+pg_password = "iu6Shoh6oogu"
