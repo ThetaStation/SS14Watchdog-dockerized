@@ -5,7 +5,7 @@ services:
     image: postgres:14.1-alpine
     container_name: postgres_ss14-watchdog
     volumes:
-      - db_dbata:/usr/src/postgresql/data
+      - db_data:/usr/src/postgresql/data
     environment:
       POSTGRES_DB: ss14
       POSTGRES_USER: postgres
