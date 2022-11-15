@@ -1,23 +1,19 @@
 version: "3.7"
-
 services:
   ss14_db:
     image: postgres:14.1-alpine
     container_name: postgres_ss14-watchdog
     volumes:
-      - db_data:/usr/src/postgresql/data
+      - ./db_data:/usr/src/postgresql/data
     environment:
       POSTGRES_DB: ss14
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
       PGDATA: /usr/src/postgresql/data
-    # ports:
-    #   - "9999:5432"
   ss14:
     depends_on:
       - ss14_db
-    build: .
-    container_name: ss14-watchdog
+    image: "ghcr.io/dushess0/ss14watchdog-dockerized:main"
     volumes:
       - ./appsettings.yml:/app/appsettings.yml
       - ./instances:/app/instances
@@ -25,6 +21,3 @@ services:
       - "${WATCHDOG_PORT}:5000"
       - "${GAME_PORT}:1212"
       - "${GAME_PORT}:1212/udp"
-
-volumes:
-  db_data:
