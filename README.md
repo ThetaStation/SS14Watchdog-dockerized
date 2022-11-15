@@ -4,11 +4,14 @@ SS14.Watchdog (codename Ian) is SS14's server-hosting wrapper thing, similar to 
 
 Documentation on how setup and use for SS14.Watchdog is [here](https://docs.spacestation14.io/en/getting-started/hosting#ss14watchdog).
 
-## Docker compose
-Getting it up and running is simple
-```docker-compose up --build```
-Запустить в background
-```docker-compose up --build -d```
 
-## Configs
-You probably want to change config.toml and appsettings.yml. Also remember to change the DATABASE PASSWORD
+# Running the server
+
+1) Copy these files (or whole repo if you want)
+ - `appsettings.yml`
+ - `docker-comose.yml`
+ - `.env `
+
+2) Change passwords and ports if necessary in `appsettings.yml` и `.env` (they must be the same in those two files).
+3) ```docker-compose up -d```
+4) the server is up and running. View the logs using the command ```docker-compose logs```
