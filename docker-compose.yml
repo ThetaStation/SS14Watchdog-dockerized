@@ -13,7 +13,7 @@ services:
   ss14:
     depends_on:
       - ss14_db
-    image: "ghcr.io/dushess0/ss14watchdog-dockerized:main"
+    image: "ghcr.io/thetastation/ss14watchdog-dockerized:main"
     volumes:
       - ./appsettings.yml:/app/appsettings.yml
       - ./instances:/app/instances
