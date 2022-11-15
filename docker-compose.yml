@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_DB: ss14
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: iu6Shoh6oogu
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
       PGDATA: /usr/src/postgresql/data
     # ports:
     #   - "9999:5432"
@@ -22,9 +22,9 @@ services:
       - ./appsettings.yml:/app/appsettings.yml
       - ./instances:/app/instances
     ports:
-      - "5555:5000"
-      - "1212:1212"
-      - "1212:1212/udp"
+      - "${WATCHDOG_PORT}:5000"
+      - "${GAME_PORT}:1212"
+      - "${GAME_PORT}:1212/udp"
 
 volumes:
   db_data:
