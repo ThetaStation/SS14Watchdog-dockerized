@@ -14,6 +14,8 @@ services:
     depends_on:
       - ss14_db
     image: "ghcr.io/thetastation/ss14watchdog-dockerized:main"
+    build: .
+    container_name: ss14watchdog
     volumes:
       - ./appsettings.yml:/app/appsettings.yml
       - ./instances:/app/instances
