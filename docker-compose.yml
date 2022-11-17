@@ -2,19 +2,17 @@ version: "3.7"
 services:
   ss14_db:
     image: postgres:14.1-alpine
-    container_name: postgres_ss14-watchdog
-    volumes:
-      - ./db_data:/usr/src/postgresql/data
+    restart: always
     environment:
       POSTGRES_DB: ss14
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
-      PGDATA: /usr/src/postgresql/data
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
   ss14:
     depends_on:
       - ss14_db
     image: "ghcr.io/thetastation/ss14watchdog-dockerized:main"
-    container_name: ss14watchdog
     volumes:
       - ./appsettings.yml:/app/appsettings.yml
       - ./instances:/app/instances
@@ -22,3 +20,4 @@ services:
       - "${WATCHDOG_PORT}:5000"
       - "${GAME_PORT}:1212"
       - "${GAME_PORT}:1212/udp"
+
